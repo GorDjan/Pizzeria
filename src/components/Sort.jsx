@@ -11,7 +11,9 @@ export const sortList = [{name:'популярности(DESC)', sortProperty: '
 
 function Sort(){
 const dispatch = useDispatch()
-const sort = useSelector(state => state.filter.sort)
+const sort = useSelector(state => state.filter.sort);
+const sortRef = React.useRef()
+
 const [open, setOpen] = React.useState(false)
 //const [selected, setSelected] = React.useState(0)
 
@@ -20,8 +22,21 @@ const onClickListItem = (obj) => {
 	dispatch(setSort(obj))
 	setOpen(false)
 }
+
+React.useEffect(()=> {
+	const handleClickOuside =(event) =>{
+		if(!event.composedPath().includes(sortRef.current)){
+			setOpen(false)
+		}
+	}
+	document.body.addEventListener('click',handleClickOuside)
+	
+	return () => {
+		document.body.removeEventListener('clcik',handleClickOuside)
+	}
+},[])
 	return (
-		<div className="sort">
+		<div ref={sortRef} className="sort">
               <div className="sort__label">
                 <svg
                   width="10"
