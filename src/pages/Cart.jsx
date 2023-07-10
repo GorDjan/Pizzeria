@@ -4,7 +4,7 @@ import { CartItem } from '../components/CartItem'
 import {useDispatch, useSelector} from 'react-redux'
 import { clearItems } from '../redux/slices/cartSlice'
 import CartEmpty from '../components/CartEmpty'
-export const Cart = ({id}) => {
+export const Cart = ({}) => {
 
 	const dispatch = useDispatch()
 	const {totalPrice,items} = useSelector(state => state.cart)
