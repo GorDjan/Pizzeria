@@ -11,8 +11,8 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 
 
 import {useSelector,useDispatch} from 'react-redux'
-import { setCategoryId,setCurrentPage,setFilters} from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzaSlice';
+import { setCategoryId,setCurrentPage,setFilters ,selectFilter} from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
 export const Home = () => {
 	const navigate = useNavigate()
@@ -20,8 +20,8 @@ export const Home = () => {
 	const isSearch = React.useRef(false)
 	const isMounted = React.useRef(false)
 	
-	const {categoryId,sort,currentPage,searchValue} = useSelector((state) => state.filter)
-	const {items,status} = useSelector((state) => state.pizza)
+	const {categoryId,sort,currentPage,searchValue} = useSelector(selectFilter)
+	const {items,status} = useSelector(selectPizzaData)
 
 
 	
