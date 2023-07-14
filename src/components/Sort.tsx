@@ -21,7 +21,6 @@ const sort = useSelector(selectSort);
 const sortRef = React.useRef<HTMLDivElement>(null)
 
 const [open, setOpen] = React.useState(false)
-//const [selected, setSelected] = React.useState(0)
 
 
 const onClickListItem = (obj:SortItem) => {
@@ -30,16 +29,15 @@ const onClickListItem = (obj:SortItem) => {
 }
 
 React.useEffect(()=> {
-	const handleClickOuside =(event:any) =>{
-		if(!event.composedPath().includes(sortRef.current)){
-			setOpen(false)
-		}
+	const handleClickOuside = (event: MouseEvent) => {
+		const _event = event.composedPath()
+  if (sortRef.current && !_event.includes(sortRef.current)) {
+	 setOpen(false)
 	}
+}
 	document.body.addEventListener('click',handleClickOuside)
 	
-	return () => {
-		document.body.removeEventListener('clcik',handleClickOuside)
-	}
+	
 },[])
 	return (
 		<div ref={sortRef} className="sort">

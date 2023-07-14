@@ -25,8 +25,8 @@ export const Home:React.FC = () => {
 
 
 	
-	const onChangeCategry =(id:number)=> {
-		dispatch(setCategoryId(id))
+	const onChangeCategry =(idx:number)=> {
+		dispatch(setCategoryId(idx))
 	}
 	const onChangePage =(page:number) => {
 		dispatch(setCurrentPage(page))

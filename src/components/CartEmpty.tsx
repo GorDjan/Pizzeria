@@ -1,9 +1,7 @@
 import React from 'react'
 import emptyCart from '../assets/img/empty-cart.png'
 import { Link } from 'react-router-dom'
-const CartEmpty = () => {
-  return (
-		<>
+const CartEmpty = () => (
 			<div className="cart cart--empty">
             <h2>Корзина пустая <span>😕</span></h2>
             <p>
@@ -15,10 +13,6 @@ const CartEmpty = () => {
               <span>Вернуться назад</span>
             </Link>
           </div>
-		</>
-  )
-			
-  
-}
+)
 
 export default CartEmpty

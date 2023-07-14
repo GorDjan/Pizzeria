@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 import styles from './Search.module.scss'
 import debounce from 'lodash.debounce'
 import {GrClose} from 'react-icons/gr'
@@ -24,7 +24,7 @@ const Search: React.FC = () => {
 			dispatch(setSearchValue(str))
 		},1000),[]);
 
-	const onChangeInput = (event:any) => {
+	const onChangeInput = (event:React.ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value);
 		updateSearchValue(event.target.value)
 	}
