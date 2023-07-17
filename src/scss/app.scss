@@ -97,7 +97,9 @@ body {
 	
   }
 }
-
+ .header__logo {
+	cursor: pointer;
+ }
 .container {
   width: $container-width;
   margin: 0 auto;

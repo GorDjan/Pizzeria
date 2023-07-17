@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import { Link } from "react-router-dom"
 import { addItem,selectCartItemById } from "../../redux/slices/cartSlice"
-const typeNames = ['тонкое','традиционное']
+const typeNames = ['Thin','Traditional']
 
 type PizzaBlockType = {
 	id:string,
@@ -62,12 +62,12 @@ const PizzaBlock:React.FC<PizzaBlockType>=({id,title,price,imageUrl,sizes,types,
 							{
 								sizes.map((size,i) => 
 								<li key={i} onClick={() => setActiveSize(i)} 
-									className={activeSize === i ? 'active' :''}>{size} см.</li>)
+									className={activeSize === i ? 'active' :''}>{size} cm.</li>)
 							}
 						</ul>
 					</div>
 					<div className="pizza-block__bottom">
-						<div className="pizza-block__price">{`от ${price} ₽`}</div>
+						<div className="pizza-block__price">{`From ${price} $`}</div>
 						<button onClick={onClickAdd}  className="button button--outline button--add">
 							<svg
 							width="12"
@@ -81,7 +81,7 @@ const PizzaBlock:React.FC<PizzaBlockType>=({id,title,price,imageUrl,sizes,types,
 								fill="white"
 							/>
 							</svg>
-							<span>Добавить</span>
+							<span>Add</span>
 							{addedCount > 0 && <i>{addedCount}</i>}
 						</button>
 					</div>

@@ -3,6 +3,6 @@ import styles from './NotFoundBlock.module.scss'
 
 export const NotFoundBlock:React.FC = () => {
   return (
-	 <h1  className={styles.root}>😕 <br/> Ничего не найдено</h1>
+	 <h1  className={styles.root}>😕 <br/> Nothing found</h1>
   )
 }

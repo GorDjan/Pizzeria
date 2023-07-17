@@ -1,3 +1,4 @@
+import React from 'react'
 import {useSelector} from 'react-redux'
 import { Link, useLocation } from "react-router-dom";
 import Search from './Search';
@@ -5,10 +6,24 @@ import logoSvg from '../assets/img/pizzaLogo.svg'
 import {selectCart} from '../redux/slices/cartSlice'
 function Header(){
 	const {items,totalPrice} = useSelector(selectCart)
-	const totalCount =items.reduce((sum:number,item:any)=> sum + item.count,0);
 	const location= useLocation()
-	
-	
+	const totalCount =items.reduce((sum:number,item:any)=> sum + item.count,0);
+	const isMounted = React.useRef(false)
+
+	React.useEffect(()=> {
+		
+		if(isMounted.current){
+			const json = JSON.stringify(items)
+			const json2 = JSON.stringify(totalPrice)
+			localStorage.setItem('cart',json)
+			localStorage.setItem('price',json2)
+			
+		}
+		isMounted.current = true
+		
+	},[items])
+
+
 	return (
 		<div className="header">
         <div className="container">
@@ -25,7 +40,7 @@ function Header(){
             {location.pathname !== '/cart' &&(
 				<div className="header__cart">
 					<Link to="/cart" className="button button--cart">
-              <span>{totalPrice} ₽</span>
+              <span>{totalPrice} $</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"

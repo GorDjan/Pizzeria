@@ -4,30 +4,33 @@ import {  useNavigate } from 'react-router-dom';
 
 import Pagination from '../components/Pagination';
 import Categories from '../components/Categories';
-import Sort, { sortList } from '../components/Sort';
+import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-
+import { sortList } from '../components/Sort';
 
 import {useSelector,useDispatch} from 'react-redux'
 import { setCategoryId,setCurrentPage,setFilters ,selectFilter} from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzaSlice';
 
 export const Home:React.FC = () => {
+	
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const isSearch = React.useRef(false)
 	const isMounted = React.useRef(false)
+
+	
 	
 	const {categoryId,sort,currentPage,searchValue} = useSelector(selectFilter)
 	const {items,status} = useSelector(selectPizzaData)
 
 
 	
-	const onChangeCategry =(idx:number)=> {
+	const onChangeCategory = React.useCallback((idx:number)=> {
 		dispatch(setCategoryId(idx))
-	}
+	},[])
 	const onChangePage =(page:number) => {
 		dispatch(setCurrentPage(page))
 	}
@@ -40,14 +43,14 @@ export const Home:React.FC = () => {
 		const search = searchValue ? `&search=${searchValue}` : '';
 
 		
-			dispatch(
-				//@ts-ignore
-				fetchPizzas({
-						order,
-						sortBy,
-						category,
-						search,
-						currentPage
+		dispatch(
+			//@ts-ignore
+			fetchPizzas({
+				order,
+				sortBy,
+				category,
+				search,
+				currentPage
 			}))
 		 
 	}
@@ -100,15 +103,15 @@ const skeletons = [...new Array(8)].map((_,index) => <Skeleton key= {index}/>)
   return (
 	<div className="container">
 		<div className="content__top">
-					<Categories value ={categoryId} onChangeCategory={onChangeCategry}/>
+					<Categories value ={categoryId} onChangeCategory={onChangeCategory}/>
 					<Sort  />
 		</div>
 
-          <h2 className="content__title">Все пиццы</h2>
+          <h2 className="content__title">All pizzas</h2>
 			 {
 				status=== 'error' ?
 				 <div className='content_error_info'>
-					<h2>Произошла ошибка 😕</h2>
+					<h2>There was an error 😕</h2>
 					
 				 </div> 
 					:<div className="content__items">

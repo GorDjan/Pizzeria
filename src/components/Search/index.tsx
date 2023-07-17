@@ -5,8 +5,11 @@ import {GrClose} from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
 import { setSearchValue } from '../../redux/slices/filterSlice'
 
+
  
-const Search: React.FC = () => {
+const Search: React.FC = React.memo(() => {
+	
+	
 	const dispatch = useDispatch()
 	const [value,setValue] = React.useState('');
 	const inputRef = React.useRef<HTMLInputElement>(null)
@@ -38,9 +41,9 @@ const Search: React.FC = () => {
 		value={value}
 		onChange={onChangeInput} 
 		className={styles.input} 
-		placeholder='Поиск...' />
+		placeholder='Search...' />
 		{value && <GrClose onClick={onClickClear} className={styles.clearIcon}/>}
 	 </div>
   )
-}
+})
 export default Search;
