@@ -9,3 +9,6 @@ Stack used in this app 📝:
 - React Content Loader
 - React Pagination
 - Lodash.Debounce
+
+Here is link to app https://gordjan.github.io/Pizzeria/
+& video https://www.youtube.com/watch?v=ca5oKpsXP2I
